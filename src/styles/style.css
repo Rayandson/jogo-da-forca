@@ -20,9 +20,10 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    background-color: #74a3da;
 }
 .palavra-div {
+    display: flex;
+    gap: 5px;
     margin: 0 auto;
 }
 
@@ -61,6 +62,7 @@
     border-radius: 5px;
     background-color: #E1ECF4;
     color: #526ca8;
+    font-weight: 700;
     border: 1px solid #74a3da;
 }
 
@@ -90,4 +92,15 @@
     border-radius: 5px;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
+}
+
+.desabilitado {
+    pointer-events: none;
+    background-color: #9FAAB5;
+    color: #7A838D;
+    font-weight: 700;
+    width:35px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
 }
