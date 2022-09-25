@@ -1,17 +1,17 @@
-import React from "react"
+import React, {useState} from "react"
 import palavras from "./palavras"
-import forca0 from "./assets/forca0.png"
+// import forca0 from "./assets/forca0.png"
 
 
 
     export default function App() {
         let letras = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
     
-    let [palavra, setPalavra] = React.useState("")
-    let [desabilitado , setDesabilitado] = React.useState("desabilitado")
+    let [palavra, setPalavra] = useState("")
+    let [desabilitado , setDesabilitado] = useState("desabilitado")
     
-    let erros = 0;
-    let [arrayPalavra, setArrayPalavra] = React.useState(palavra.split(""))
+    let [erros, setErros] = useState(0)
+    let [arrayPalavra, setArrayPalavra] = useState(palavra.split(""))
     // const clicados = [];
     
     function sortearPalavra() {
@@ -31,26 +31,37 @@ import forca0 from "./assets/forca0.png"
         // clicados.push(letras[botao])
         // console.log(clicados)
         // setDesabilitado("desabilitado")
-
+        let guardaErros = 0
         let guardaPalavra = palavra.split("")
         let novoArray = [...arrayPalavra];
+        let contador = 0
         guardaPalavra.forEach(function (l, index) { 
             if(l===letra) {
             novoArray[index] = l;
-        } 
+        } else {
+            contador++
+        }
         }
         )
+        if(contador === guardaPalavra.length) {
+            guardaErros = erros + 1
+            setErros(guardaErros)
+        }
         setArrayPalavra(novoArray)
+        if(!novoArray.includes("_")) {
+            setTimeout(() => alert("VOCÊ GANHOU"), 500)
+        }
+        if(guardaErros === 6) {
+            setTimeout(() => alert("VOCÊ PERDEU"), 500)
+        }
     }
-    
-   
-    
+
 
     return(
     <>
     <div className="conteudo">
     <div className="principal">
-    <img className="img-forca" src={forca0} alt="imagem forca" />
+    <img className="img-forca" src={`./forca${erros}.png`} alt="imagem forca" />
     <div className="right">
     <button className="escolher" onClick={sortearPalavra}>Escolher palavra</button>
     <div className="palavra-div">
