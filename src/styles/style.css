@@ -29,6 +29,15 @@
 
 .palavra {
     font-size: 30px;
+    font-weight: 700;
+}
+
+.verde {
+    color: green;
+}
+
+.vermelho {
+    color: red;
 }
 
 .escolher {
@@ -54,6 +63,11 @@
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 50px;
+}
+
+.botao {
+    width:35px;
+    height: 35px;
 }
 
 .tecla {
@@ -83,7 +97,7 @@
     height: 25px;
 }
 
-.bottom button {
+.bottom-button {
     width: 65px;
     height: 35px;
     background-color: #E1ECF4;
@@ -99,8 +113,6 @@
     background-color: #9FAAB5;
     color: #7A838D;
     font-weight: 700;
-    width:35px;
-    height: 35px;
     border-radius: 5px;
     border: none;
 }

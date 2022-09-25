@@ -7,29 +7,32 @@ import palavras from "./palavras"
     export default function App() {
         let letras = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
     
-    let [palavra, setPalavra] = useState("")
-    let [desabilitado , setDesabilitado] = useState("desabilitado")
+    const [palavra, setPalavra] = useState("")
+    const [desabilitado , setDesabilitado] = useState("desabilitado")
     
-    let [erros, setErros] = useState(0)
-    let [arrayPalavra, setArrayPalavra] = useState(palavra.split(""))
-    // const clicados = [];
+    const [erros, setErros] = useState(0)
+    const [arrayPalavra, setArrayPalavra] = useState(palavra.split(""))
+    const [cor, setCor] = useState("")
+    const [clicados, setClicados] = useState([])
     
     function sortearPalavra() {
         let novaPalavra = palavras[Math.floor(Math.random() * palavras.length)]
         setPalavra(novaPalavra);
         setDesabilitado("tecla")
+        setClicados([])
         let novoArray = novaPalavra.split("")
         let arrayTransformado = [];
         novoArray.forEach(function(l) {
             arrayTransformado.push("_")
         })
         setArrayPalavra(arrayTransformado)
+        setCor("")
+        setErros(0)
     }
 
  
     function verificaLetra(letra) {
-        // clicados.push(letras[botao])
-        // console.log(clicados)
+        setClicados([...clicados, letra])
         // setDesabilitado("desabilitado")
         let guardaErros = 0
         let guardaPalavra = palavra.split("")
@@ -49,10 +52,16 @@ import palavras from "./palavras"
         }
         setArrayPalavra(novoArray)
         if(!novoArray.includes("_")) {
-            setTimeout(() => alert("VOCÊ GANHOU"), 500)
+            // setTimeout(() => alert("VOCÊ GANHOU"), 500)
+            setCor("verde")
+            setArrayPalavra(guardaPalavra)
+            setDesabilitado("desabilitado")
         }
         if(guardaErros === 6) {
-            setTimeout(() => alert("VOCÊ PERDEU"), 500)
+            // setTimeout(() => alert("VOCÊ PERDEU"), 500)
+            setCor("vermelho")
+            setArrayPalavra(guardaPalavra)
+            setDesabilitado("desabilitado")
         }
     }
 
@@ -65,17 +74,17 @@ import palavras from "./palavras"
     <div className="right">
     <button className="escolher" onClick={sortearPalavra}>Escolher palavra</button>
     <div className="palavra-div">
-        {arrayPalavra.map((l) => <div className="palavra">{l}</div>)}
+        {arrayPalavra.map((l) => <div className={`palavra ${cor}`}>{l}</div>)}
     </div>
     </div>
     </div>
     <div className="teclado">
-    {letras.map((l) => <button className={desabilitado} onClick={() => verificaLetra(l)}>{l.toUpperCase()}</button>)}
+    {letras.map((l) => <button className={`botao ${desabilitado} ${clicados.includes(l) ? "desabilitado" : ""}`} onClick={() => verificaLetra(l)}>{l.toUpperCase()}</button>)}
     </div>
     <div className="bottom">
     <p>Já sei a palavra!</p>
     <input></input>
-    <button>Chutar</button>
+    <button className={`bottom-button ${desabilitado}`}>Chutar</button>
     </div>
     </div>
     </>
