@@ -1,37 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 
-.conteudo {
-    width: 700px;
-    margin: 10px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: 'Roboto', sans-serif;
-}
-
-.principal {
-    width: 700px;
-    display: flex;
-    justify-content: space-between;
-    
-}
-.right {
-    width: 350px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-}
-.palavra-div {
-    display: flex;
-    gap: 5px;
-    margin: 0 auto;
-}
-
-.palavra {
-    font-size: 30px;
-    font-weight: 700;
-}
-
 .verde {
     color: green;
 }
@@ -40,35 +8,6 @@
     color: red;
 }
 
-.escolher {
-    width: 150px;
-    height: 40px;
-    margin-top: 35px;
-    margin-left: 175px;
-    background-color: #28AE60;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    border: none;
-    border-radius: 5px;
-}
-
-.img-forca {
-    width: 350px;
-}
-
-.teclado {
-    width: 575px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 50px;
-}
-
-.botao {
-    width:35px;
-    height: 35px;
-}
 
 .tecla {
     width:35px;
@@ -78,34 +17,6 @@
     color: #526ca8;
     font-weight: 700;
     border: 1px solid #74a3da;
-}
-
-.bottom {
-    width: 470px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 25px;
-}
-
-.bottom p {
-    font-size: 15px;
-}
-
-.bottom input {
-    width: 250px;
-    height: 25px;
-}
-
-.bottom-button {
-    width: 65px;
-    height: 35px;
-    background-color: #E1ECF4;
-    color: #526ca8;
-    border: 1px solid #74a3da;
-    border-radius: 5px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
 }
 
 .desabilitado {

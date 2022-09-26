@@ -1,4 +1,5 @@
 import React, {useState} from "react"
+import styled from 'styled-components';
 import palavras from "./palavras"
 // import forca0 from "./assets/forca0.png"
 
@@ -93,25 +94,117 @@ import palavras from "./palavras"
 
     return(
     <>
-    <div className="conteudo">
-    <div className="principal">
-    <img className="img-forca" src={`./forca${erros}.png`} alt="imagem forca" />
-    <div className="right">
-    <button className="escolher" onClick={sortearPalavra}>Escolher palavra</button>
-    <div className="palavra-div">
-        {arrayPalavra.map((l) => <div className={`palavra ${cor}`}>{l}</div>)}
-    </div>
-    </div>
-    </div>
-    <div className="teclado">
-    {letras.map((l) => <button className={`botao ${desabilitado} ${clicados.includes(l) ? "desabilitado" : ""}`} onClick={() => verificaLetra(l)}>{l.toUpperCase()}</button>)}
-    </div>
-    <div className="bottom">
+    <Conteudo>
+    <Principal>
+    <ImagemForca src={`./forca${erros}.png`} alt="imagem forca" />
+    <Right>
+    <BotaoEscolher onClick={sortearPalavra}>Escolher palavra</BotaoEscolher>
+    <PalavraDiv>
+        {arrayPalavra.map((l) => <Palavra className={cor}>{l}</Palavra>)}
+    </PalavraDiv>
+    </Right>
+    </Principal>
+    <Teclado>
+    {letras.map((l) => <Tecla className={`${desabilitado} ${clicados.includes(l) ? "desabilitado" : ""}`} onClick={() => verificaLetra(l)}>{l.toUpperCase()}</Tecla>)}
+    </Teclado>
+    <Bottom>
     <p>Já sei a palavra!</p>
     <input onChange={(e)=> setChute(e.target.value)} value={chute} ></input>
-    <button className={`bottom-button ${desabilitado}`} onClick={verificarChute} >Chutar</button>
-    </div>
-    </div>
+    <BottomButton className={`${desabilitado}`} onClick={verificarChute} >Chutar </BottomButton>
+    </Bottom>
+    </Conteudo>
     </>
     )
 }
+
+
+// styled-components
+const Conteudo = styled.div`
+width: 700px;
+margin: 10px auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+font-family: 'Roboto', sans-serif;
+`;
+
+const Principal = styled.div`
+width: 700px;
+display: flex;
+justify-content: space-between;
+`;
+
+const Right = styled.div`
+width: 350px;
+display: flex;
+justify-content: space-between;
+flex-direction: column;
+`;
+
+const PalavraDiv = styled.div`
+display: flex;
+gap: 5px;
+margin: 0 auto;
+`;
+
+const Palavra = styled.div`
+font-size: 30px;
+font-weight: 700;
+`;
+
+const BotaoEscolher = styled.button`
+width: 150px;
+height: 40px;
+margin-top: 35px;
+margin-left: 175px;
+background-color: #28AE60;
+color: white;
+font-family: 'Roboto', sans-serif;
+font-weight: 700;
+border: none;
+border-radius: 5px;
+`;
+
+const ImagemForca = styled.img`
+width: 350px;
+`;
+
+const Teclado = styled.div`
+width: 575px;
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+margin-top: 50px;
+`;
+
+const Tecla = styled.button`
+width:35px;
+height: 35px;
+`;
+
+const Bottom = styled.div`
+width: 470px;
+display: flex;
+align-items: center;
+gap: 10px;
+margin-top: 25px;
+
+p {
+    font-size: 15px; 
+}
+input {
+    width: 250px;
+    height: 25px; 
+}
+`;
+
+const BottomButton = styled.button`
+width: 65px;
+height: 35px;
+background-color: #E1ECF4;
+color: #526ca8;
+border: 1px solid #74a3da;
+border-radius: 5px;
+font-family: 'Roboto', sans-serif;
+font-weight: 700;
+`;
