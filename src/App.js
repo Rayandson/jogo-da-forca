@@ -14,6 +14,7 @@ import palavras from "./palavras"
     const [arrayPalavra, setArrayPalavra] = useState(palavra.split(""))
     const [cor, setCor] = useState("")
     const [clicados, setClicados] = useState([])
+    const [chute, setChute] = useState("")
     
     function sortearPalavra() {
         let novaPalavra = palavras[Math.floor(Math.random() * palavras.length)]
@@ -39,7 +40,17 @@ import palavras from "./palavras"
         let novoArray = [...arrayPalavra];
         let contador = 0
         guardaPalavra.forEach(function (l, index) { 
-            if(l===letra) {
+            if(l === "ç" && letra === "c") {
+            novoArray[index] = l;  
+            } else if((l === "á" || l === "à" || l === "â" || l === "ã") && letra === "a") {
+            novoArray[index] = l;     
+            } else if((l === "ó" || l === "ô") && letra === "o") {
+            novoArray[index] = l;     
+            } else if(l === "í" && letra === "i") {
+            novoArray[index] = l;     
+            } else if(l === "ú" && letra === "u") {
+                novoArray[index] = l; 
+            } else if(l===letra) {
             novoArray[index] = l;
         } else {
             contador++
@@ -65,6 +76,20 @@ import palavras from "./palavras"
         }
     }
 
+    function verificarChute() {
+        let guardaPalavra = palavra.split("")
+        if(chute === palavra) {
+            setArrayPalavra(guardaPalavra)
+            setCor("verde")
+            setDesabilitado("desabilitado")
+            setChute("")
+        } else {
+            setCor("vermelho")
+            setArrayPalavra(guardaPalavra)
+            setDesabilitado("desabilitado")
+            setChute("")
+        }
+    }
 
     return(
     <>
@@ -83,8 +108,8 @@ import palavras from "./palavras"
     </div>
     <div className="bottom">
     <p>Já sei a palavra!</p>
-    <input></input>
-    <button className={`bottom-button ${desabilitado}`}>Chutar</button>
+    <input onChange={(e)=> setChute(e.target.value)} value={chute} ></input>
+    <button className={`bottom-button ${desabilitado}`} onClick={verificarChute} >Chutar</button>
     </div>
     </div>
     </>
