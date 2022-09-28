@@ -1,10 +1,16 @@
 import React, {useState} from "react"
 import styled from 'styled-components';
 import palavras from "./palavras"
-// import forca0 from "./assets/forca0.png"
+import forca0 from "./assets/forca0.png"
+import forca1 from "./assets/forca1.png"
+import forca2 from "./assets/forca2.png"
+import forca3 from "./assets/forca3.png"
+import forca4 from "./assets/forca4.png"
+import forca5 from "./assets/forca5.png"
+import forca6 from "./assets/forca6.png"
 
 
-
+const imagens = [forca0, forca1, forca2, forca3, forca4, forca5, forca6]
     export default function App() {
         let letras = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
     
@@ -96,21 +102,22 @@ import palavras from "./palavras"
     <>
     <Conteudo>
     <Principal>
-    <ImagemForca src={`./forca${erros}.png`} alt="imagem forca" />
+    {/* <ImagemForca src={`./forca${erros}.png`} alt="imagem forca" /> */}
+    <ImagemForca data-identifier="game-image" src={imagens[erros]} alt="imagem forca" /> 
     <Right>
-    <BotaoEscolher onClick={sortearPalavra}>Escolher palavra</BotaoEscolher>
+    <BotaoEscolher data-identifier="choose-word" onClick={sortearPalavra}>Escolher palavra</BotaoEscolher>
     <PalavraDiv>
-        {arrayPalavra.map((l) => <Palavra className={cor}>{l}</Palavra>)}
+        {arrayPalavra.map((l) => <Palavra data-identifier="word" className={cor}>{l}</Palavra>)}
     </PalavraDiv>
     </Right>
     </Principal>
     <Teclado>
-    {letras.map((l) => <Tecla className={`${desabilitado} ${clicados.includes(l) ? "desabilitado" : ""}`} onClick={() => verificaLetra(l)}>{l.toUpperCase()}</Tecla>)}
+    {letras.map((l) => <Tecla data-identifier="letter" className={`${desabilitado} ${clicados.includes(l) ? "desabilitado" : ""}`} onClick={() => verificaLetra(l)}>{l.toUpperCase()}</Tecla>)}
     </Teclado>
     <Bottom>
     <p>Já sei a palavra!</p>
-    <input onChange={(e)=> setChute(e.target.value)} value={chute} ></input>
-    <BottomButton className={`${desabilitado}`} onClick={verificarChute} >Chutar </BottomButton>
+    <input data-identifier="type-guess" onChange={(e)=> setChute(e.target.value)} value={chute} ></input>
+    <BottomButton data-identifier="guess-button" className={`${desabilitado}`} onClick={verificarChute} >Chutar </BottomButton>
     </Bottom>
     </Conteudo>
     </>
